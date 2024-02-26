@@ -99,7 +99,7 @@ if (isset($_SESSION['email_user'])) {
 
                             </div>
                             <div class="row">
-                                <a class="upload bg-primary c-white fs-13 rad-6 d-block w-fit" href="#ModalAddPourcentage" data-toggle="modal">
+                                <a class="upload bg-primary c-white fs-13 rad-6 d-block w-fit" data-bs-toggle="modal" data-bs-target="#con-close-modal">
                                     <i class="fa-solid fa-angles-up mr-10"></i>
                                     Ajouter
                                 </a>
@@ -212,15 +212,16 @@ if (isset($_SESSION['email_user'])) {
                         ?>
 
 
-                        <div id="ModalAddPourcentage" class="modal fade">
+                        <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <form id="ModalAddPourcentage" action="" method="post">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Modification De L'Acte</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Nouveau type d'acte</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body p-4">
+                                            <!-- contenu du modal -->
                                             <div class="form-group">
                                                 <label>Nom De L'Acte</label>
                                                 <input type="text" name="nom_acte" id="mmatriculationsociete" class="form-control" placeholder="Veuillez indiquer directement le nom de l'acte" required="">
@@ -241,11 +242,10 @@ if (isset($_SESSION['email_user'])) {
                                                 <label for="libelle_nddi">De 10.000.000 FCFA ou Plus</label>
                                                 <input class="form-control" type="text" name="quatrieme" placeholder="%">
                                             </div>
-
-
+                                            <!-- contenu du modal -->
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Annuler</button>
                                             <button type="submit" name="Enregistrer" class="btn btn-info">Enregistrer</button>
                                         </div>
                                     </form>
@@ -257,7 +257,7 @@ if (isset($_SESSION['email_user'])) {
                     </div>
                 </div>
             </div>
-            
+
 
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
