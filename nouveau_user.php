@@ -95,80 +95,100 @@ imagedestroy($image);
     }
 }
 ?>
-<section class="contact-section section-padding" id="section_5" >
-   <div class="contenaire-fluid">
-    <div class="card">
-        <div class="card-header">
-            <div class="card-title">          
-                    <h3 class="card-title">Enregistrement d'un Nouveau Personnel</h3>         
-            </div>
-            <form method="POST" action="">
-            <div class="row">
-            <div class="col-lg-6 col-md-6 col-12">
-                <div class="form-floating">
-                    <label for="nom_user">Nom</label>
-                    <input type="text" class="form-control" id="nom_user" name="nom_user" placeholder="Entrez le Nom" required>
+
+    <section class="contact-section mt-5 section-padding" id="section_5">
+        <!-- <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-sm-12">
+                    <div class="page-sub-header">
+                        <h3 class="page-title">Add Students</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="students.html">Student</a></li>
+                            <li class="breadcrumb-item active">Add Students</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 col-12">
-                <div class="form-floating">
-                 <label for="prenom_user">Prénom</label>
-                 <input type="text" class="form-control" id="prenom_user" name="prenom_user" placeholder="Entrez le Prénom" required>
-                </div>
-             </div> 
-        </div>
+        </div> -->
 
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-12">
-            <div class="form-floating">
-                <label for="adresse_user">Adresse</label>
-                <input type="text" class="form-control" id="adresse_user" name="adresse_user" placeholder="Entrez l'Adresse" required>
-             </div>
-              </div>
-            <div class="col-lg-6 col-md-6 col-12">
-             <div class="form-floating">
-                <label for="contact_user">Contact</label>
-                 <input type="text" class="form-control" id="contact_user" name="contact_user" placeholder="Entrez le Contact" required>
-             </div>
-             </div>
-
-        </div>
-
-        <div class="row">
-             <div class="col-lg-6 col-md-6 col-12"> 
-                            <div class="form-floating">
-                                <label for="contact_user">Abreviation</label>
-                                <input type="text" class="form-control" id="abreviation_log_user" name="abreviation_log_user" placeholder="Entrez l'Abreviation" required>    
-                            </div>
-                        </div>
-
-            <div class="col-lg-6 col-md-6 col-12">
-                 <div class="form-floating">
-                     <label for="email_user">Sexe</label>
-                     <select name="sexe" class="form-control" required="">
-                         <option>Choisissez Le Sexe</option>
-                         <option value="M">M</option>
-                         <option value="F">F</option>
-                     </select>
-                     
-                </div>
-            </div>
-
-            
-
-            </div>
-
-        <div class="row">
-           <div class="col-lg-6 col-md-6 col-12">
-                <div class="form-floating">
-                 <label for="departement_user">Choisissez le Département</label><br>
-                    <select id="departement_user" name="departement_user" class="form-control">
-                        <option>Selectionner Ici</option>
-                    <option value="GRH">GRH</option>
-                     <option value="Comptabilité">Comptabilité</option>
-                     <option value="Notaire">Notaire</option>
-                    <option value="Greffier">Greffier</option>
-                    <option value="Clerc Principal">Clerc Principal</option>
+            <div class="col-sm-12">
+                <div class="card comman-shadow">
+                    <div class="card-body">
+                        <form action="insert_cleint.php" method="post" class="custom-form contact-form" role="form">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="form-title student-info">Enregistrement d'un Nouveau Personnel<span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Nom <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" name="nom_user" id="forme" placeholder="Saisissez le nom" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Prénom : <span class="login-danger">*</span></label>
+                                        <input type="text" placeholder="Saisissez Prénom " name="prenom_user" id="capital" class="form-control" required="">
+                                    </div>
+                                </div>
+                               <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Sexe: <span class="login-danger">*</span></label>
+                                        <select class="form-control select">
+                                            <option>Le Sexe</option>
+                                            <option>Feminine</option>
+                                            <option>Masculin</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms calendar-icon">
+                                        <label>Choisissez le Département: <span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker" type="text" placeholder="DD-MM-YYYY">
+                                    </div>
+                                </div> -->
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Adresse :</label>
+                                        <input class="form-control" type="text" name="adresse_user" id="siege" placeholder="Adresse" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Contact :</label>
+                                        <input type="text" name="contact_user" id="administration" class="form-control" placeholder="contact" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Abreviation:</label>
+                                        <input type="text" name="abreviation_log_user" id="prenom_pere_client" class="form-control" placeholder="Prénom du Père" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Profession:</label>
+                                        <input type="text" name="profession_user" id="nom_pere_client" class="form-control" placeholder="profession" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Email:</label>
+                                        <input type="text" name="email_user" id="prenom_mere_client" class="form-control" placeholder="email" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group local-forms">
+                                        <label>Choisissez le Département: <span class="login-danger">*</span></label>
+                                        <select class="form-control select">
+                                            <option>Selectionner Ici</option>
+                                            <option value="GRH">GRH</option>
+                                            <option value="Comptabilité">Comptabilité</option>
+                                       <option value="Notaire">Notaire</option>
+                                        <option value="Greffier">Greffier</option>
+                                       <option value="Clerc Principal">Clerc Principal</option>
                     <option value="Clerc Immobilier/Assistant Études">Clerc Immobilier/Assistant Études</option>
                     <option value="Clerc Sociétés">Clerc Sociétés</option>
                     <option value="Secrétaire Clerc/Caisse">Secrétaire Clerc/Caisse</option>
@@ -176,56 +196,50 @@ imagedestroy($image);
                     <option value="Secrétaire">Secrétaire</option>
                    <option value="Agent Administratif/Actes Immobiliers">Agent Administratif/Actes Immobiliers</option>
                     <option value="Agent Administratif/Actes Sociétés">Agent Administratif/Actes Sociétés</option>
-                    </select>
-                    </div> 
-                </div>
-                <div class="col-lg-6 col-md-6 col-12"> 
-                        <div class="form-floating">
-                            <label for="contact_user">Profession</label>
-                            <input type="text" class="form-control" id="profession_user" name="profession_user" placeholder="Entrez la Profession" required>    
-                        </div>
-                </div>
-            </div>
-            <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
-                 <div class="form-floating">
-                     <label for="email_user">Email</label>
-                     <input type="text" class="form-control" id="email_user" name="email_user" placeholder="Entrez l'Email" required>
-                </div>
-            </div>
-            </div><br><br>  
-            <center><button class="btn btn-primary" type="submit" name="submit" class="form-control">Enregistrer</button>
-                    </center>
-                    </form>
-        </div>            
-        </div>
-     </div> 
-</section>
-</body>
-<footer class="site-footer">
-</footer>
-</html> 
-</footer>
-<script src="vendor/apexcharts/apexcharts.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/chart.js/chart.umd.js"></script>
-<script src="vendor/echarts/echarts.min.js"></script>
-<script src="vendor/quill/quill.min.js"></script>
-<script src="vendor/simple-datatables/simple-datatables.js"></script>
-<script src="vendor/tinymce/tinymce.min.js"></script>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+
+                                
+                               
 
 
-</html> 
+                                <!-- <div class="col-12 col-sm-4">
+                                    <div class="form-group students-up-files">
+                                        <label>Upload Student Photo (150px X 150px)</label>
+                                        <div class="uplod">
+                                            <label class="file-upload image-upbtn mb-0">
+                                                Choose File <input type="file">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="col-12">
+                                    <div class="student-submit">
+                                        <button class="btn btn-primary" type="submit" name="submit" class="form-control">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </section>
 <?php
- }else{
-    ?>
-    <center><div style="margin-top: 300px"><h3>
-        <?php
+} else {
+?>
+    <center>
+        <div style="margin-top: 300px">
+            <h3>
+                <?php
         // Redirigez avec un message de succès
         echo "<script>alert('Oups👋!!! Veuillez Vous Connectez.')</script>";
         echo "<script type='text/javascript'> document.location ='index.php'; </script>";
-    ?>
-    </h3></div></center>
-    <?php
- }
- ?>
+        ?>
+            </h3>
+        </div>
+    </center>
+<?php
+}
+?>

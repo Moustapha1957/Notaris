@@ -12,7 +12,7 @@ if (isset($_SESSION['email_user'])) {
         <div class="card-header">
           <div class="card-title">
             <h3 class="card-title">
-              Enregistrement des Clients
+              Enregistrement d'un Nouveau Personnel
             </h3>
           </div>
           <div class="row">
