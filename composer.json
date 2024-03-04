@@ -16,6 +16,7 @@
         "mpdf/mpdf": "^8.2",
         "ramsey/uuid": "^4.7",
         "phpoffice/phpword": "^1.2",
-        "phpoffice/phpspreadsheet": "^1.29"
+        "phpoffice/phpspreadsheet": "^1.29",
+        "phpmailer/phpmailer": "^6.9"
     }
 }

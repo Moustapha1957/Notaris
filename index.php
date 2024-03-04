@@ -1,91 +1,91 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>Notaris</title>
 
-        <meta name="description" content="">
-        <meta name="author" content="imperis.com">
+<link rel="shortcut icon" href="assetstyle/img/logo-small.png">
 
-        <title>NOTARIS</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="assetstyle/plugins/bootstrap/css/bootstrap.min.css">
 
-<section class="h-100 gradient-form" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
-          <div class="row g-0">
-            <div class="col-lg-12">
-              <div class="card-body p-md-5 mx-md-4">
+<link rel="stylesheet" href="assetstyle/plugins/feather/feather.css">
 
-                <div class="text-center">
-                  <img src="images/notaire.jpeg"
-                    style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Bienvenue Sur Notaris</h4>
-                </div>
+<link rel="stylesheet" href="assetstyle/plugins/icons/flags/flags.css">
 
-                <form action="tr_login.php" method="POST">
-                  
+<link rel="stylesheet" href="assetstyle/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assetstyle/plugins/fontawesome/css/all.min.css">
 
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example11">Email</label>
-                    <input type="email" name="email_user" id="form2Example11" class="form-control"
-                      placeholder="votre Adresse Email" />
-                    
-                  </div>
+<link rel="stylesheet" href="assetstyle/css/style.css">
+</head>
+<body>
 
-                  <div class="form-outline mb-4">
-                     <label class="form-label" for="form2Example22">Password</label>
-                    <input type="password" name="password_user" id="form2Example22" class="form-control"placeholder="votre password" />
-                   
-                  </div>
+<div class="main-wrapper login-body">
+<div class="login-wrapper">
+<div class="container">
+<div class="loginbox">
+<div class="login-left">
+<img class="img-fluid" src="assetstyle/img/logo_log.png" alt="Logo">
+</div>
+<div class="login-right">
+<div class="login-right-wrap">
+<h1>Bienvenu Sur Notaris</h1>
 
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button  type="submit" value="Connexion" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" name="submit" type="button">Log
-                      in</button>
-                   
-                  </div>
-                  </form>
+<h2>Se connecter</h2>
 
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<form method="POST" action="tr_login.php">
+<div class="form-group">
+<label>Email <span class="login-danger">*</span></label>
+<input class="form-control" name="email_user" type="text">
+<span class="profile-views"><i class="fas fa-user-circle"></i></span>
+</div>
+<div class="form-group">
+<label>Mot de passe <span class="login-danger">*</span></label>
+<input class="form-control pass-input" name="password_user" type="password">
+<span class="profile-views feather-eye toggle-password"></span>
+</div>
+<div class="forgotpass">
+<!--<div class="remember-me">
+<label class="custom_check mr-2 mb-0 d-inline-flex remember-me"> Remember me
+<input type="checkbox" name="radio">
+<span class="checkmark"></span>
+</label>
+</div>-->
+<a href="forgotpassword.php">Mot de passe oublié ?</a>
+</div>
+<div class="form-group">
+<button class="btn btn-primary btn-block" name="submit" type="submit">Se connecter</button>
+</div>
+</form>
+
+<!--<div class="login-or">
+<span class="or-line"></span>
+<span class="span-or">or</span>
+</div>
+
+<div class="social-login">
+<a href="#"><i class="fab fa-google-plus-g"></i></a>
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+</div>-->
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="assets/js/feather.min.js"></script>
+
+<script src="assets/js/script.js"></script>
 </body>
-
-                <footer class="site-footer">
-            
-          </html> 
-        </footer>
-        <script src="vendor/apexcharts/apexcharts.min.js"></script>
-        <script src="endor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="vendor/chart.js/chart.umd.js"></script>
-        <script src="vendor/echarts/echarts.min.js"></script>
-        <script src="vendor/quill/quill.min.js"></script>
-        <script src="vendor/simple-datatables/simple-datatables.js"></script>
-        <script src="vendor/tinymce/tinymce.min.js"></script>
-        <script src="vendor/php-email-form/validate.js"></script>
-
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
-
-     </html>
+</html>

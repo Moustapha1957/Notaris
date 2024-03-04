@@ -123,7 +123,7 @@ while ($i = $recupcabinet -> fetch()) {
 
                    if (isset($_GET['id'] ) and $_GET['id'] == 4 ) {
                    $recupcabinet= $conn->prepare('SELECT * FROM messagerie  WHERE email_recepteur = ? ORDER BY id');
-                    $recupcabinet -> execute(array($_SESSION['email']));
+                    $recupcabinet -> execute(array($_SESSION['email_user']));
                  if ($recupcabinet != null){
                  ?>
                    <center>
@@ -144,7 +144,7 @@ while ($i = $recupcabinet -> fetch()) {
             # code...
                                   $p = $conn->prepare('SELECT email_expediteur , email_destinateur, indexx FROM notification WHERE email_destinateur = ? ORDER BY id_notif DESC');
 
-                                 $p -> execute(array( $_SESSION['email']));
+                                 $p -> execute(array( $_SESSION['email_user']));
                                 $i = $p -> fetch();
                                      ?>
 

@@ -1,16 +1,17 @@
 <?php
 session_start();
 include 'nav.php';
+include 'bdconnect.php';
 ?>
 
 
 <div class="page-header">
     <div class="row">
         <div class="col">
-            <h3 class="page-title">Profile</h3>
+            <h3 class="page-title">Profil</h3>
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                <li class="breadcrumb-item active">Profile</li>
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item active">Profil</li>
             </ul>
         </div>
     </div>
@@ -70,77 +71,101 @@ include 'nav.php';
             <div class="tab-pane fade show active" id="per_details_tab">
 
                 <div class="row">
-                    <div class="col-lg-9">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title d-flex justify-content-between">
-                                    <span>Informations Personnelles</span>
-                                    <a class="edit-link" data-bs-toggle="modal" href="#edit_personal_details"><i class="far fa-edit me-1"></i>Modifier</a>
-                                </h5>
-                                <div class="row">
-                                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Name</p>
-                                    <p class="col-sm-9">John Doe</p>
-                                </div>
-                                <div class="row">
-                                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Date of
-                                        Birth</p>
-                                    <p class="col-sm-9">24 Jul 1983</p>
-                                </div>
-                                <div class="row">
-                                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email ID</p>
-                                    <p class="col-sm-9"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a1cbcec9cfc5cec4e1c4d9c0ccd1cdc48fc2cecc">[email&#160;protected]</a>
-                                    </p>
-                                </div>
-                                <div class="row">
-                                    <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Mobile</p>
-                                    <p class="col-sm-9">305-310-5857</p>
-                                </div>
-                                <div class="row">
-                                    <p class="col-sm-3 text-muted text-sm-end mb-0">Address</p>
-                                    <p class="col-sm-9 mb-0">4663 Agriculture Lane,<br>
-                                        Miami,<br>
-                                        Florida - 33165,<br>
-                                        United States.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
+ <div class="col-lg-9">
+ <div class="card">
+ <div class="card-body">
+ <h5 class="card-title d-flex justify-content-between">
+ <span>Informations Personnelles</span>
+<!--<a class="edit-link" data-bs-toggle="modal"
+ href="#edit_personal_details"><i
+ class="far fa-edit me-1"></i>Modifier</a>-->
+ </h5>
+ <div class="row">
+ <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Prenom & Nom</p>
+ <p class="col-sm-9"><?php echo $_SESSION['prenom_user']." ".$_SESSION['nom_user']; ?></p>
+ </div>
+ <div class="row">
+ <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Sexe</p>
+ <?php 
+ $sex = $_SESSION['sexe'];
+ if ($sex == "M") {
+    $sexe = "Masculin";
+  }elseif ($sex == "F") {
+    $sexe = "Féminin";
+  }else {
+    $sexe = "Non Déterminé";
+  } ?>
+ <p class="col-sm-9"><?php echo $sexe; ?></p>
+ </div>
+ <div class="row">
+ <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Email</p>
+ <p class="col-sm-9"><?php echo $_SESSION['email_user']; ?></p>
+ </div>
+ <div class="row">
+ <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Contact</p>
+ <p class="col-sm-9"><?php echo $_SESSION['contact_user']; ?></p>
+ </div>
+ <div class="row">
+ <p class="col-sm-3 text-muted text-sm-end mb-0">Adresse</p>
+ <p class="col-sm-9 mb-0"><?php echo $_SESSION['adresse_user']; ?>,<br>
+ Bamako,<br>
+ Mali.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-lg-3">
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title d-flex justify-content-between">
-                                    <span>Account Status</span>
-                                    <a class="edit-link" href="#"><i class="far fa-edit me-1"></i>
-                                        Edit</a>
-                                </h5>
-                                <button class="btn btn-success" type="button"><i class="fe fe-check-verified"></i> Active</button>
-                            </div>
-                        </div>
+ <div class="card">
+ <div class="card-body">
+ <h5 class="card-title d-flex justify-content-between">
+ <span>Statut du compte</span>
+ <!--<a class="edit-link" href="#"><i class="far fa-edit me-1"></i>
+ Edit</a>-->
+ </h5>
+ <button class="btn btn-success" type="button"><i
+ class="fe fe-check-verified"></i> Actif</button>
+ </div>
+ </div>
 
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title d-flex justify-content-between">
-                                    <span>Skills </span>
-                                    <a class="edit-link" href="#"><i class="far fa-edit me-1"></i>
-                                        Edit</a>
-                                </h5>
-                                <div class="skill-tags">
-                                    <span>Html5</span>
-                                    <span>CSS3</span>
-                                    <span>WordPress</span>
-                                    <span>Javascript</span>
-                                    <span>Android</span>
-                                    <span>iOS</span>
-                                    <span>Angular</span>
-                                    <span>PHP</span>
-                                </div>
-                            </div>
-                        </div>
+ <div class="card">
+ <div class="card-body">
+ <h5 class="card-title d-flex justify-content-between">
+ <span>Accès </span>
+ <!--<a class="edit-link" href="#"><i class="far fa-edit me-1"></i>
+ Détails</a>-->
+ </h5>
+ <div class="skill-tags">
+    <?php 
+    if ($_SESSION['departement_user'] == "Notaire") {
+        ?>
+        <span>+ Client</span>
+        <span>+ Acte</span>
+ <span>+ Personnel</span>
+ <span>+ Chiffre d'affaire</span>
+ <span>+ Méssagerie</span>
+ <span>+ Historique de Connexion</span>
+ <span>+ Pourcentage / Emoluments</span>
+ 
+     <?php
+     } elseif ($_SESSION['departement_user'] == "Clerc Principal" OR "Clerc" OR "Greffier" OR "Clerc Immobilier/Assistant Études" OR "Clerc Sociétés" OR "Secrétaire Clerc/Caisse" OR "Secrétaire Clerc" OR "Secrétaire") {
+         ?>
+ <span>+ Client</span>
+ <span>+ Acte</span>
+ <span>Dashboard</span>
+ <span>Méssagerie</span>
+ <span>Profil</span>
+ <span>+ Emoluments</span>
 
-                    </div>
-                </div>
+ <?php 
+ } ?>
+ </div>
+ </div>
+ </div>
+
+ </div>
+ </div>
 
             </div>
 
@@ -148,23 +173,23 @@ include 'nav.php';
             <div id="password_tab" class="tab-pane fade">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Change Password</h5>
+                        <h5 class="card-title">Changer le mot de passe</h5>
                         <div class="row">
                             <div class="col-md-10 col-lg-6">
-                                <form>
+                                <form method="POST" action="modification_password.php">
                                     <div class="form-group">
-                                        <label>Old Password</label>
-                                        <input type="password" class="form-control">
+                                        <label>Ancien mot de passe</label>
+                                        <input type="password" class="form-control" name="mot_de_passe_actuel" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>New Password</label>
-                                        <input type="password" class="form-control">
+                                        <label>Nouveau mot de passe</label>
+                                        <input type="password" class="form-control" name="nouveau_mot_de_passe" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Confirm Password</label>
-                                        <input type="password" class="form-control">
+                                        <label>Confirmez le mot de passe</label>
+                                        <input type="password" class="form-control" name="confirmer_mot_de_passe" required>
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                                    <button class="btn btn-primary" type="submit">Sauvegarder</button>
                                 </form>
                             </div>
                         </div>

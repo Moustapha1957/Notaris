@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Africa/Bamako');
 require("bdconnect.php");
 if (isset($_POST['libelle_messagerie'])) {
 	# code...
@@ -31,5 +32,5 @@ if(!$p){
 }
  $update = $conn -> prepare('UPDATE notification SET indexx = indexx + 1 WHERE email_expediteur = ? and email_destinateur = ?');
  $update ->execute(array( $_SESSION['email_user'], $email));
-	header("Location:message_privee.php?id=3");
+	header("Location:message_prive.php?id=1");
   }

@@ -1,4 +1,5 @@
 <?php 
+date_default_timezone_set('Africa/Bamako');
 include 'bdconnect.php';
 ?>
 <!DOCTYPE html>
@@ -622,10 +623,10 @@ include 'bdconnect.php';
     <div class="header">
 
       <div class="header-left">
-        <a href="index.html" class="logo">
+        <a href="dashboard.php" class="logo">
           <img src="assetstyle/img/LOGONOTARIS.png" alt="Logo">
         </a>
-        <a href="index.html" class="logo logo-small">
+        <a href="dashboard.php" class="logo logo-small">
           <img src="assetstyle/img/logo-small.png" alt="Logo" width="30" height="30">
         </a>
       </div>
@@ -642,6 +643,7 @@ include 'bdconnect.php';
           <button class="btn" type="submit"><i class="fas fa-search"></i></button>
         </form>
       </div>-->
+
 
 
       <a class="mobile_btn" id="mobile_btn">
@@ -663,82 +665,79 @@ include 'bdconnect.php';
 
         <li class="nav-item dropdown noti-dropdown me-2">
           <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
+            <?php 
+            $sqlnotification = "SELECT * FROM messagerie WHERE email_recepteur = :email_recepteur AND lecture = :lecture";
+            $smtpnotification = $conn->prepare($sqlnotification);
+            $smtpnotification->bindParam(':email_recepteur', $_SESSION['email_user'], PDO::PARAM_STR);
+$lecturenotification = "Non"; // Définir la valeur de lecture
+$smtpnotification->bindParam(':lecture', $lecturenotification, PDO::PARAM_STR);
+$smtpnotification->execute();
+
+if ($smtpnotification->rowCount() == 0) {
+             ?>
             <img src="assetstyle/img/icons/header-icon-05.svg" alt="">
+          <?php }else { ?>
+
+            <img src="assetstyle/img/icons/bell-pin-svgrepo-com.svg" width="25" height="25" alt="">
+        <?php  } ?>
           </a>
           <div class="dropdown-menu notifications">
             <div class="topnav-dropdown-header">
               <span class="notification-title">Notifications</span>
-              <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+              
             </div>
             <div class="noti-content">
               <ul class="notification-list">
-                <li class="notification-message">
-                  <a href="#">
-                    <div class="media d-flex">
-                      <span class="avatar avatar-sm flex-shrink-0">
-                        <img class="avatar-img rounded-circle" alt="User Image" src="assetstyle/img/profiles/avatar-02.jpg">
-                      </span>
-                      <div class="media-body flex-grow-1">
-                        <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
-                          approved <span class="noti-title">your estimate</span></p>
-                        <p class="noti-time"><span class="notification-time">4 mins ago</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a href="#">
-                    <div class="media d-flex">
-                      <span class="avatar avatar-sm flex-shrink-0">
-                        <img class="avatar-img rounded-circle" alt="User Image" src="assetstyle/img/profiles/avatar-11.jpg">
-                      </span>
-                      <div class="media-body flex-grow-1">
-                        <p class="noti-details"><span class="noti-title">International Software
-                            Inc</span> has sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                        <p class="noti-time"><span class="notification-time">6 mins ago</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a href="#">
-                    <div class="media d-flex">
-                      <span class="avatar avatar-sm flex-shrink-0">
-                        <img class="avatar-img rounded-circle" alt="User Image" src="assetstyle/img/profiles/avatar-17.jpg">
-                      </span>
-                      <div class="media-body flex-grow-1">
-                        <p class="noti-details"><span class="noti-title">John Hendry</span> sent
-                          a cancellation request <span class="noti-title">Apple iPhone
-                            XR</span></p>
-                        <p class="noti-time"><span class="notification-time">8 mins ago</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="notification-message">
-                  <a href="#">
-                    <div class="media d-flex">
-                      <span class="avatar avatar-sm flex-shrink-0">
-                        <img class="avatar-img rounded-circle" alt="User Image" src="assetstyle/img/profiles/avatar-13.jpg">
-                      </span>
-                      <div class="media-body flex-grow-1">
-                        <p class="noti-details"><span class="noti-title">Mercury Software
-                            Inc</span> added a new product <span class="noti-title">Apple
-                            MacBook Pro</span></p>
-                        <p class="noti-time"><span class="notification-time">12 mins ago</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
+                <?php 
+$sqluser = "SELECT m.*, u.nom_user AS nom_emetteur, u.prenom_user AS prenom_emetteur
+            FROM messagerie m
+            JOIN users u ON m.email_emetteur = u.email_user
+            WHERE m.email_recepteur = :email_recepteur 
+            AND m.lecture = :lecture";
+$stmtuser = $conn->prepare($sqluser);
+$stmtuser->bindParam(':email_recepteur', $_SESSION['email_user'], PDO::PARAM_STR);
+$lecture = "Non"; // Définir la valeur de lecture
+$stmtuser->bindParam(':lecture', $lecture, PDO::PARAM_STR);
+$stmtuser->execute();
+
+if ($stmtuser->rowCount() == 0) {
+    echo '<li class="notification-message">
+            <div class="media d-flex">
+              <div class="media-body flex-grow-1">
+                <p class="noti-details"><span class="noti-title"><center>Aucun Nouveau</span> Message <span class="noti-title">trouvé.</center></span></p>
+                <p class="noti-time"><span class="notification-time"></span></p>
+              </div>
+            </div>
+          </li>';
+} else {
+    while ($rowuser = $stmtuser->fetch(PDO::FETCH_ASSOC)) {
+?>
+    <li class="notification-message">
+      <a href="message_contenu.php?nbr=<?php echo $rowuser['id']; ?>">
+        <div class="media d-flex">
+          <span class="avatar avatar-sm flex-shrink-0">
+            <img class="avatar-img rounded-circle" alt="User Image" src="assetstyle/img/profiles/avatar-02.jpg">
+          </span>
+          <div class="media-body flex-grow-1">
+            <p class="noti-details"><span class="noti-title"><?= $rowuser['prenom_emetteur'] ?> <?= $rowuser['nom_emetteur'] ?></span> Vous a envoyé un message.</p>
+            <p class="noti-time"><span class="notification-time"><?= $rowuser['datee'] ?></span></p>
+          </div>
+        </div>
+      </a>
+    </li>
+<?php
+    }
+}
+?>
+
+
+
+                
+                
+                
               </ul>
             </div>
-            <div class="topnav-dropdown-footer">
-              <a href="#">View all Notifications</a>
-            </div>
+            
           </div>
         </li>
 
@@ -805,7 +804,14 @@ include 'bdconnect.php';
               </div>
             </div>
             <a class="dropdown-item" href="profile.php">Profile</a>
-            <a class="dropdown-item" href="message_privee.php?id=1">Messagerie</a>
+            <a class="dropdown-item" href="message_prive.php?id=1">Messagerie</a>
+
+            <?php 
+            if ($_SESSION['departement_user'] == "Notaire") {
+               ?>
+               <a class="dropdown-item" href="parametre.php"> Paramètres</a>
+            <?php } ?>
+            
             <form method="post" action="deconnexion.php">
                 <input type="submit" class="dropdown-item" value="Deconnexion" name="logout">
             </form>
@@ -871,7 +877,7 @@ include 'bdconnect.php';
               <a href="nouveau_user.php"><i class="fas fa-clipboard-list"></i> <span>Nouveau Personnel</span></a>
             </li>
             <li>
-              <a href="message_privee.php?id=1"><i class="fas fa-calendar-day"></i> <span>Messagerie</span></a>
+              <a href="message_prive.php?id=1"><i class="fas fa-calendar-day"></i> <span>Messagerie</span></a>
             </li>
             <li>
               <a href="pourcentages.php"><i class="fas fa-table"></i> <span>Pourcentages</span></a>
@@ -882,6 +888,8 @@ include 'bdconnect.php';
             <li>
               <a href="historique_auth.php"><i class="fas fa-book"></i> <span>Historique connexion</span></a>
             </li>
+
+            
 
           </ul>
 
