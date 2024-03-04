@@ -113,7 +113,7 @@ if (isset($_SESSION['email_user'])) {
                                     <div class="mb-10 d-flex justify-content-between">
                                         <div class="">
                                             <i class="fa-solid fa-folder fa-fw"></i>
-                                            <span>Numeros Notaris : </span>
+                                            <span>N° Notaris : </span>
                                         </div>
                                         <div class="">
                                             <span><?php echo $row["numero_notaris"]; ?></span>
@@ -133,7 +133,7 @@ if (isset($_SESSION['email_user'])) {
                                     <div class="mb-10 d-flex justify-content-between">
                                         <div class="">
                                             <i class="fa-solid fa-file fa-fw"></i>
-                                            <span>Autres Informations : </span>
+                                            <span>Infos : </span>
                                         </div>
                                         <div class="">
                                             <span><?php echo $row["autres_information"]; ?></span>
@@ -285,15 +285,32 @@ if (isset($_SESSION['email_user'])) {
                                         <a href="acte_modif.php?id=<?php echo $id_dossier_client ?>&isc=<?php echo $idsd ?>" data-toggle="modal" class="btn btn-warning">Modifier</a>
                                         <a href="commentaires.php?id=<?php echo $id_dossier_client ?>&isc=<?php echo $idsd ?>" data-toggle="modal" class="btn btn-secondary">Details</a>
                                     </div>
+                                    <a href=""></a>
                                 <?php
                                 } else {
                                     echo "<center><div style='color: #ff7c00;'><p>Vous n'êtes pas responsable de cet acte.</p></div></center>";
+
+                                    $sqluser = "SELECT * FROM users WHERE id_user_at = :id";
+    $stmtuser = $conn->prepare($sqluser);
+    $stmtuser->bindParam(':id', $row['id_user'], PDO::PARAM_INT);
+    $stmtuser->execute();
+
+    if ($stmtuser->rowCount() == 0) {
+                        echo '<tr><td colspan="3">Aucun Auteur trouvé.</td></tr>';
+                    } else {
+
+                        $rowuser = $stmtuser->fetch();
+
+                        echo '<center><a href="#">'.$rowuser['prenom_user'].' '.$rowuser['nom_user'].'</a></center>';
+
+                    }
                                 }
                                 ?>
                             </div>
                         <?php
                         }
                         ?>
+
                         <!-- Message pour aucun résultat trouvé -->
                         <center>
                             <div id="noResultsMessage" style="display: none; color: red;">Aucun acte trouvé avec cette recherche.</div>

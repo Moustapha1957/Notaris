@@ -5,6 +5,9 @@ if (isset($_SESSION['email_user'])) {
 
     include 'nav.php';
     include 'bdconnect.php';
+    include 'bmd/database_backup.php';
+    $heure_actuelle = date("H:i:s");
+    
 ?>
 
 

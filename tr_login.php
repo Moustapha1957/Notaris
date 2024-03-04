@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
     $emailcabinet = htmlspecialchars($_POST['email_user']);
     $password = htmlspecialchars($_POST['password_user']);
 
-    $result = $conn->prepare("SELECT id_user_at, matricule_user, email_user, password_user, nom_user, prenom_user, departement_user, adresse_user, abreviation_log_user FROM users WHERE email_user = ?");
+    $result = $conn->prepare("SELECT id_user_at, matricule_user, email_user, password_user, nom_user, prenom_user, departement_user, contact_user, sexe, adresse_user, abreviation_log_user FROM users WHERE email_user = ?");
     $result->execute(array($emailcabinet));
     $user = $result->fetch();
 
@@ -17,6 +17,8 @@ if (isset($_POST['submit'])) {
         $_SESSION['nom_user'] = $user['nom_user'];
         $_SESSION['prenom_user'] = $user['prenom_user'];
         $_SESSION['adresse_user'] = $user['adresse_user'];
+        $_SESSION['contact_user'] = $user['contact_user'];
+        $_SESSION['sexe'] = $user['sexe'];
         $_SESSION['departement_user'] = $user['departement_user'];
         $_SESSION['password_user'] = $user['password_user'];
         $_SESSION['abreviation'] = $user['abreviation_log_user'];

@@ -3,7 +3,7 @@
     $host = 'localhost';
     $dbname = 'notaris';
     $username = 'root';
-    $password = 'root';
+    $password = '';
  
   try {
   
