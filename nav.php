@@ -1,4 +1,4 @@
-<?php 
+<?php
 date_default_timezone_set('Africa/Bamako');
 include 'bdconnect.php';
 ?>
@@ -665,43 +665,43 @@ include 'bdconnect.php';
 
         <li class="nav-item dropdown noti-dropdown me-2">
           <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
-            <?php 
+            <?php
             $sqlnotification = "SELECT * FROM messagerie WHERE email_recepteur = :email_recepteur AND lecture = :lecture";
             $smtpnotification = $conn->prepare($sqlnotification);
             $smtpnotification->bindParam(':email_recepteur', $_SESSION['email_user'], PDO::PARAM_STR);
-$lecturenotification = "Non"; // Définir la valeur de lecture
-$smtpnotification->bindParam(':lecture', $lecturenotification, PDO::PARAM_STR);
-$smtpnotification->execute();
+            $lecturenotification = "Non"; // Définir la valeur de lecture
+            $smtpnotification->bindParam(':lecture', $lecturenotification, PDO::PARAM_STR);
+            $smtpnotification->execute();
 
-if ($smtpnotification->rowCount() == 0) {
-             ?>
-            <img src="assetstyle/img/icons/header-icon-05.svg" alt="">
-          <?php }else { ?>
+            if ($smtpnotification->rowCount() == 0) {
+            ?>
+              <img src="assetstyle/img/icons/header-icon-05.svg" alt="">
+            <?php } else { ?>
 
-            <img src="assetstyle/img/icons/bell-pin-svgrepo-com.svg" width="25" height="25" alt="">
-        <?php  } ?>
+              <img src="assetstyle/img/icons/bell-pin-svgrepo-com.svg" width="25" height="25" alt="">
+            <?php  } ?>
           </a>
           <div class="dropdown-menu notifications">
             <div class="topnav-dropdown-header">
               <span class="notification-title">Notifications</span>
-              
+
             </div>
             <div class="noti-content">
               <ul class="notification-list">
-                <?php 
-$sqluser = "SELECT m.*, u.nom_user AS nom_emetteur, u.prenom_user AS prenom_emetteur
+                <?php
+                $sqluser = "SELECT m.*, u.nom_user AS nom_emetteur, u.prenom_user AS prenom_emetteur
             FROM messagerie m
             JOIN users u ON m.email_emetteur = u.email_user
             WHERE m.email_recepteur = :email_recepteur 
             AND m.lecture = :lecture";
-$stmtuser = $conn->prepare($sqluser);
-$stmtuser->bindParam(':email_recepteur', $_SESSION['email_user'], PDO::PARAM_STR);
-$lecture = "Non"; // Définir la valeur de lecture
-$stmtuser->bindParam(':lecture', $lecture, PDO::PARAM_STR);
-$stmtuser->execute();
+                $stmtuser = $conn->prepare($sqluser);
+                $stmtuser->bindParam(':email_recepteur', $_SESSION['email_user'], PDO::PARAM_STR);
+                $lecture = "Non"; // Définir la valeur de lecture
+                $stmtuser->bindParam(':lecture', $lecture, PDO::PARAM_STR);
+                $stmtuser->execute();
 
-if ($stmtuser->rowCount() == 0) {
-    echo '<li class="notification-message">
+                if ($stmtuser->rowCount() == 0) {
+                  echo '<li class="notification-message">
             <div class="media d-flex">
               <div class="media-body flex-grow-1">
                 <p class="noti-details"><span class="noti-title"><center>Aucun Nouveau</span> Message <span class="noti-title">trouvé.</center></span></p>
@@ -709,35 +709,35 @@ if ($stmtuser->rowCount() == 0) {
               </div>
             </div>
           </li>';
-} else {
-    while ($rowuser = $stmtuser->fetch(PDO::FETCH_ASSOC)) {
-?>
-    <li class="notification-message">
-      <a href="message_contenu.php?nbr=<?php echo $rowuser['id']; ?>">
-        <div class="media d-flex">
-          <span class="avatar avatar-sm flex-shrink-0">
-            <img class="avatar-img rounded-circle" alt="User Image" src="assetstyle/img/profiles/avatar-02.jpg">
-          </span>
-          <div class="media-body flex-grow-1">
-            <p class="noti-details"><span class="noti-title"><?= $rowuser['prenom_emetteur'] ?> <?= $rowuser['nom_emetteur'] ?></span> Vous a envoyé un message.</p>
-            <p class="noti-time"><span class="notification-time"><?= $rowuser['datee'] ?></span></p>
-          </div>
-        </div>
-      </a>
-    </li>
-<?php
-    }
-}
-?>
+                } else {
+                  while ($rowuser = $stmtuser->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                    <li class="notification-message">
+                      <a href="message_contenu.php?nbr=<?php echo $rowuser['id']; ?>">
+                        <div class="media d-flex">
+                          <span class="avatar avatar-sm flex-shrink-0">
+                            <img class="avatar-img rounded-circle" alt="User Image" src="assetstyle/img/profiles/avatar-02.jpg">
+                          </span>
+                          <div class="media-body flex-grow-1">
+                            <p class="noti-details"><span class="noti-title"><?= $rowuser['prenom_emetteur'] ?> <?= $rowuser['nom_emetteur'] ?></span> Vous a envoyé un message.</p>
+                            <p class="noti-time"><span class="notification-time"><?= $rowuser['datee'] ?></span></p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                <?php
+                  }
+                }
+                ?>
 
 
 
-                
-                
-                
+
+
+
               </ul>
             </div>
-            
+
           </div>
         </li>
 
@@ -750,24 +750,24 @@ if ($stmtuser->rowCount() == 0) {
         <li class="nav-item dropdown has-arrow new-user-menus">
           <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
             <span class="user-img">
-              <?php 
-    // Assurez-vous de sécuriser votre requête en utilisant une requête préparée
-    $sql = "SELECT * FROM users WHERE id_user_at = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$_SESSION['id_user']]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+              <?php
+              // Assurez-vous de sécuriser votre requête en utilisant une requête préparée
+              $sql = "SELECT * FROM users WHERE id_user_at = ?";
+              $stmt = $conn->prepare($sql);
+              $stmt->execute([$_SESSION['id_user']]);
+              $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($row && isset($row['avatar'])) {
-        // Chemin complet de l'avatar
-        $avatarFilePath = 'img/avatar_user/' . $row['avatar'];
-        
-        // Afficher l'avatar avec un identifiant unique
-        echo '<img id="avatar" src="' . $avatarFilePath . '" class="rounded-circle" width="31" alt="Avatar Notaris">';
-    } else {
-        // Afficher un message si l'avatar n'est pas trouvé
-        echo "Avatar non trouvé";
-    }
-    ?>
+              if ($row && isset($row['avatar'])) {
+                // Chemin complet de l'avatar
+                $avatarFilePath = 'img/avatar_user/' . $row['avatar'];
+
+                // Afficher l'avatar avec un identifiant unique
+                echo '<img id="avatar" src="' . $avatarFilePath . '" class="rounded-circle" width="31" alt="Avatar Notaris">';
+              } else {
+                // Afficher un message si l'avatar n'est pas trouvé
+                echo "Avatar non trouvé";
+              }
+              ?>
               <!--<img class="rounded-circle" src="assetstyle/img/profiles/avatar-01.jpg" width="31" alt="Soeng Souy">-->
               <div class="user-text">
                 <h6><?php echo $_SESSION['prenom_user'] . " " . $_SESSION['nom_user']; ?></h6>
@@ -778,24 +778,24 @@ if ($stmtuser->rowCount() == 0) {
           <div class="dropdown-menu">
             <div class="user-header">
               <div class="avatar avatar-sm">
-                <?php 
-    // Assurez-vous de sécuriser votre requête en utilisant une requête préparée
-    $sql = "SELECT * FROM users WHERE id_user_at = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$_SESSION['id_user']]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                <?php
+                // Assurez-vous de sécuriser votre requête en utilisant une requête préparée
+                $sql = "SELECT * FROM users WHERE id_user_at = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$_SESSION['id_user']]);
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($row && isset($row['avatar'])) {
-        // Chemin complet de l'avatar
-        $avatarFilePath = 'img/avatar_user/' . $row['avatar'];
-        
-        // Afficher l'avatar avec un identifiant unique
-        echo '<img id="avatar" src="' . $avatarFilePath . '" class="avatar-img rounded-circle" width="31" alt="Avatar Notaris">';
-    } else {
-        // Afficher un message si l'avatar n'est pas trouvé
-        echo "Avatar non trouvé";
-    }
-    ?>
+                if ($row && isset($row['avatar'])) {
+                  // Chemin complet de l'avatar
+                  $avatarFilePath = 'img/avatar_user/' . $row['avatar'];
+
+                  // Afficher l'avatar avec un identifiant unique
+                  echo '<img id="avatar" src="' . $avatarFilePath . '" class="avatar-img rounded-circle" width="31" alt="Avatar Notaris">';
+                } else {
+                  // Afficher un message si l'avatar n'est pas trouvé
+                  echo "Avatar non trouvé";
+                }
+                ?>
                 <!--<img src="assetstyle/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">-->
               </div>
               <div class="user-text">
@@ -806,14 +806,14 @@ if ($stmtuser->rowCount() == 0) {
             <a class="dropdown-item" href="profile.php">Profile</a>
             <a class="dropdown-item" href="message_prive.php?id=1">Messagerie</a>
 
-            <?php 
+            <?php
             if ($_SESSION['departement_user'] == "Notaire") {
-               ?>
-               <a class="dropdown-item" href="parametre.php"> Paramètres</a>
+            ?>
+              <a class="dropdown-item" href="parametre.php"> Paramètres</a>
             <?php } ?>
-            
+
             <form method="post" action="deconnexion.php">
-                <input type="submit" class="dropdown-item" value="Deconnexion" name="logout">
+              <input type="submit" class="dropdown-item" value="Deconnexion" name="logout">
             </form>
             <!--a class="dropdown-item" href="login.html">Logout</a>-->
           </div>
@@ -877,10 +877,10 @@ if ($stmtuser->rowCount() == 0) {
               <a href="nouveau_user.php"><i class="fas fa-clipboard-list"></i> <span>Nouveau Personnel</span></a>
             </li>
             <li>
-              <a href="message_prive.php?id=1"><i class="fas fa-calendar-day"></i> <span>Messagerie</span></a>
+              <a href="message_prive.php?id=1"><i class="fa-solid fa-message"></i></i> <span>Messagerie</span></a>
             </li>
             <li>
-              <a href="pourcentages.php"><i class="fas fa-table"></i> <span>Pourcentages</span></a>
+              <a href="pourcentages.php"><i class="fa-solid fa-percent"></i><span>Pourcentages</span></a>
             </li>
             <li>
               <a href="modification_password.php"><i class="fas fa-table"></i> <span>Modifier Le Mot De Passe</span></a>
@@ -889,7 +889,7 @@ if ($stmtuser->rowCount() == 0) {
               <a href="historique_auth.php"><i class="fas fa-book"></i> <span>Historique connexion</span></a>
             </li>
 
-            
+
 
           </ul>
 
